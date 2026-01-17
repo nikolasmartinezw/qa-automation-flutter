@@ -22,6 +22,12 @@ To run the tests, you need the **Patrol CLI** installed on your machine.
     ```
     This command checks if your environment (Android SDK, Xcode, etc.) is correctly set up for native automation.
 
+    > **Windows Users**: If you get a "Command not found" error, you need to add the Pub Cache bin to your PATH.
+    > Run this in PowerShell to fix it for the current session:
+    > ```powershell
+    > $env:Path += ";$env:LOCALAPPDATA\Pub\Cache\bin"
+    > ```
+
 ## ⚙️ Configuration
 
 The project is already configured for Patrol in `pubspec.yaml`.
