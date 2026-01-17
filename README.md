@@ -1,13 +1,21 @@
-# Flutter Automation Test App
+# Automation Lab
 
-A learning project demonstrating Flutter automation testing using **Patrol**, a powerful end-to-end testing framework for Flutter apps.
+A professional Flutter automation testing application with a modern, minimalist design inspired by contemporary tech aesthetics. This project demonstrates end-to-end testing capabilities using **Patrol**, a powerful automation framework for Flutter apps.
+
+## Design Philosophy
+
+The app features a striking **black, white, and blue** color scheme with sharp geometric elements and bold typography. The design emphasizes:
+- **Symmetry**: Balanced layouts and mirrored components
+- **Minimalism**: Clean lines, no rounded corners, maximum clarity
+- **Contrast**: High contrast between elements for visual impact
+- **Precision**: Exact spacing and alignment throughout
 
 ## Project Structure
 
 ```
 flutter_automation_app/
 ├── lib/
-│   └── main.dart              # Simple app with counter, text input, and reset
+│   └── main.dart              # Main app with counter, text input, and reset
 ├── integration_test/
 │   └── patrol_test.dart       # Patrol automation tests
 └── pubspec.yaml               # Dependencies
@@ -15,13 +23,14 @@ flutter_automation_app/
 
 ## Features
 
-The demo app includes:
-- **Counter**: Increment/decrement buttons to learn basic interactions
-- **Text Input**: TextField to learn text entry automation
-- **Display Text**: Dynamic text that updates based on user input
-- **Reset Button**: Resets all state to learn complex interactions
+The app includes:
+- **Counter**: Symmetrical increment/decrement buttons with bold styling
+- **Text Input**: Clean text field with black borders and blue focus state
+- **Display Text**: Dynamic header with black-to-blue gradient
+- **Reset Button**: Full state reset functionality
+- **Professional UI**: Modern design with sharp edges and bold typography
 
-All widgets have semantic keys for easy automation targeting.
+All widgets have semantic keys for reliable automation testing.
 
 ## Getting Started
 
@@ -56,6 +65,25 @@ patrol test integration_test/patrol_test.dart
 patrol test --verbose
 ```
 
+## Design Elements
+
+### Color Palette
+- **Primary Black**: `#000000` - Main text and borders
+- **Accent Blue**: `#0066FF` - Interactive elements and highlights
+- **Background White**: `#FAFAFA` - Clean, minimal background
+- **Gradient**: Black to Blue for header impact
+
+### Typography
+- **Font Weight**: Bold (700-900) for strong visual hierarchy
+- **Letter Spacing**: Increased spacing for premium feel
+- **Case**: Uppercase labels for technical precision
+
+### Components
+- **Buttons**: Square, no border radius, bold borders
+- **Inputs**: Sharp borders, blue focus state
+- **Containers**: Geometric, high contrast
+- **Spacing**: Generous padding and margins
+
 ## Learning Patrol Concepts
 
 ### 1. **Finders** - Locating UI Elements
@@ -64,13 +92,10 @@ patrol test --verbose
 find.byKey(const Key('incrementButton'))
 
 // Find by text
-find.text('Increment')
+find.text('UPDATE MESSAGE')
 
 // Find by type
 find.byType(ElevatedButton)
-
-// Find by icon
-find.byIcon(Icons.refresh)
 ```
 
 ### 2. **Interactions** - Automating User Actions
@@ -83,21 +108,15 @@ await $.enterText(find.byKey(const Key('textInput')), 'Hello');
 
 // Long press
 await $.longPress(find.byKey(const Key('someButton')));
-
-// Drag
-await $.drag(find.byType(Slider), const Offset(100, 0));
 ```
 
 ### 3. **Assertions** - Verifying State
 ```dart
 // Widget exists
-expect(find.text('Hello'), findsOneWidget);
+expect(find.text('COUNTER'), findsOneWidget);
 
 // Widget doesn't exist
 expect(find.text('Goodbye'), findsNothing);
-
-// Multiple widgets
-expect(find.byType(ElevatedButton), findsWidgets);
 ```
 
 ### 4. **Test Structure**
@@ -187,4 +206,4 @@ patrolTest(
 
 ---
 
-Happy testing! 🚀
+Built with precision and attention to detail. 🎯
