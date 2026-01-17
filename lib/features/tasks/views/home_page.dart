@@ -11,7 +11,7 @@ import 'widgets/clear_button.dart';
 
 /// Home Page
 ///
-/// Main page of the Symmetry Club QA Automation Showcase app.
+/// Main page of the Patrol QA App.
 /// Follows MVC pattern with TaskController handling business logic.
 class HomePage extends StatefulWidget {
   final ThemeController themeController;

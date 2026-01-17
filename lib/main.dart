@@ -4,7 +4,7 @@ import 'app.dart';
 
 /// Main Entry Point
 ///
-/// Symmetry Club - QA Automation Showcase
+/// Patrol QA App
 ///
 /// Architecture: Clean Architecture + MVC
 ///

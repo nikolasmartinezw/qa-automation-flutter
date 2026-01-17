@@ -56,7 +56,7 @@ class HeaderWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'SYMMETRY CLUB',
+                  'PATROL QA APP',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,

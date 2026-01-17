@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Symmetry Club Brand Color Palette
+/// Patrol QA App Brand Color Palette
 ///
 /// A minimal, premium black & white design system
-/// inspired by the geometric Symmetry Club logo.
+/// inspired by the geometric Patrol QA App logo.
 class SymmetryColors {
   SymmetryColors._();
 

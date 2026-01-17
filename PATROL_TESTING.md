@@ -1,6 +1,6 @@
 # Patrol Testing Guide
 
-This document explains how **Patrol** is integrated into the **Symmetry Club QA Automation App** for robust UI and integration testing.
+This document explains how **Patrol** is integrated into the **Patrol QA App** for robust UI and integration testing.
 
 ## 🚀 What is Patrol?
 Patrol is an advanced testing framework for Flutter that extends standard integration testing capabilities. It offers two main advantages:

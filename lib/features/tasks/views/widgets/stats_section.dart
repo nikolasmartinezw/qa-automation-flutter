@@ -94,7 +94,7 @@ class _StatCard extends StatelessWidget {
         : (isDark ? SymmetryColors.mediumGray : SymmetryColors.lightGray);
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
       decoration: BoxDecoration(
         color: bgColor,
         gradient: bgGradient,
@@ -134,7 +134,7 @@ class _StatCard extends StatelessWidget {
               fontSize: 9,
               fontWeight: FontWeight.w700,
               color: SymmetryColors.dimGray,
-              letterSpacing: 1.5,
+              letterSpacing: 0.5,
             ),
           ),
         ],
@@ -160,7 +160,7 @@ class _ProgressCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -207,7 +207,7 @@ class _ProgressCard extends StatelessWidget {
               fontSize: 9,
               fontWeight: FontWeight.w700,
               color: SymmetryColors.dimGray,
-              letterSpacing: 1.5,
+              letterSpacing: 0.5,
             ),
           ),
         ],

@@ -20,7 +20,7 @@ class SymmetryApp extends StatelessWidget {
       listenable: themeController,
       builder: (context, _) {
         return MaterialApp(
-          title: 'Symmetry Club',
+          title: 'Patrol QA App',
           debugShowCheckedModeBanner: false,
           themeMode: themeController.themeMode,
           theme: SymmetryTheme.lightTheme,
