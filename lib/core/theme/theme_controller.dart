@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+/// Theme Controller
+///
+/// Manages the app's theme mode (Light/Dark).
+/// Persists selection using Shared Preferences.
+class ThemeController extends ChangeNotifier {
+  static const String _themeKey = 'theme_mode';
+
+  ThemeMode _themeMode = ThemeMode.dark;
+
+  ThemeMode get themeMode => _themeMode;
+
+  bool get isDark => _themeMode == ThemeMode.dark;
+
+  ThemeController() {
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isDark = prefs.getBool(_themeKey) ?? true; // Default to dark
+    _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
+
+  Future<void> toggleTheme() async {
+    _themeMode = _themeMode == ThemeMode.dark
+        ? ThemeMode.light
+        : ThemeMode.dark;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_themeKey, _themeMode == ThemeMode.dark);
+  }
+}

@@ -1,102 +1,107 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
-import 'package:flutter_automation_app/main.dart';
+import 'package:flutter_automation_app/app.dart';
+import 'package:flutter_automation_app/core/theme/theme_controller.dart';
 
 void main() {
-  patrolTest(
-    'Counter increment test',
-    ($) async {
-      await $.pumpWidgetAndSettle(const MyApp());
-      expect(find.text('0'), findsOneWidget);
+  patrolTest('Add task test', ($) async {
+    await $.pumpWidgetAndSettle(
+      SymmetryApp(themeController: ThemeController()),
+    );
 
-      await $.tap(find.byKey(const Key('incrementButton')));
-      await $.tap(find.byKey(const Key('incrementButton')));
-      await $.tap(find.byKey(const Key('incrementButton')));
+    // Verify initial state
+    expect(find.text('NO TASKS YET'), findsOneWidget);
 
-      expect(find.text('3'), findsOneWidget);
-    },
-  );
+    // Add a task
+    await $.enterText(
+      find.byKey(const Key('textInput')),
+      'Test automation task',
+    );
+    await $.tap(find.byKey(const Key('addButton')));
 
-  patrolTest(
-    'Counter decrement test',
-    ($) async {
-      await $.pumpWidgetAndSettle(const MyApp());
+    // Verify task was added
+    expect(find.text('Test automation task'), findsOneWidget);
+  });
 
-      for (int i = 0; i < 5; i++) {
-        await $.tap(find.byKey(const Key('incrementButton')));
-      }
+  patrolTest('Complete task test', ($) async {
+    await $.pumpWidgetAndSettle(
+      SymmetryApp(themeController: ThemeController()),
+    );
 
-      expect(find.text('5'), findsOneWidget);
+    // Add a task
+    await $.enterText(find.byKey(const Key('textInput')), 'Complete this task');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.tap(find.byKey(const Key('decrementButton')));
-      await $.tap(find.byKey(const Key('decrementButton')));
+    // Tap on the task to complete it
+    await $.tap(find.text('Complete this task'));
 
-      expect(find.text('3'), findsOneWidget);
-    },
-  );
+    // Verify task shows DONE tag
+    expect(find.text('DONE'), findsOneWidget);
+  });
 
-  patrolTest(
-    'Text input and update test',
-    ($) async {
-      await $.pumpWidgetAndSettle(const MyApp());
+  patrolTest('Add multiple tasks test', ($) async {
+    await $.pumpWidgetAndSettle(
+      SymmetryApp(themeController: ThemeController()),
+    );
 
-      expect(find.text('Hello, Automation!'), findsOneWidget);
+    // Add first task
+    await $.enterText(find.byKey(const Key('textInput')), 'First task');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.enterText(
-        find.byKey(const Key('textInput')),
-        'Patrol is awesome!',
-      );
+    // Add second task
+    await $.enterText(find.byKey(const Key('textInput')), 'Second task');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.tap(find.byKey(const Key('updateButton')));
+    // Add third task
+    await $.enterText(find.byKey(const Key('textInput')), 'Third task');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      expect(find.text('Patrol is awesome!'), findsOneWidget);
-    },
-  );
+    // Verify all tasks are present
+    expect(find.text('First task'), findsOneWidget);
+    expect(find.text('Second task'), findsOneWidget);
+    expect(find.text('Third task'), findsOneWidget);
+  });
 
-  patrolTest(
-    'Reset all functionality test',
-    ($) async {
-      await $.pumpWidgetAndSettle(const MyApp());
+  patrolTest('Clear completed tasks test', ($) async {
+    await $.pumpWidgetAndSettle(
+      SymmetryApp(themeController: ThemeController()),
+    );
 
-      await $.tap(find.byKey(const Key('incrementButton')));
-      await $.tap(find.byKey(const Key('incrementButton')));
+    // Add two tasks
+    await $.enterText(find.byKey(const Key('textInput')), 'Task to complete');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.enterText(
-        find.byKey(const Key('textInput')),
-        'Test text',
-      );
+    await $.enterText(find.byKey(const Key('textInput')), 'Task to keep');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.tap(find.byKey(const Key('updateButton')));
+    // Complete first task
+    await $.tap(find.text('Task to complete'));
 
-      expect(find.text('2'), findsOneWidget);
-      expect(find.text('Test text'), findsOneWidget);
+    // Clear completed tasks
+    await $.tap(find.byKey(const Key('clearButton')));
 
-      await $.tap(find.byKey(const Key('resetButton')));
+    // Verify only active task remains
+    expect(find.text('Task to complete'), findsNothing);
+    expect(find.text('Task to keep'), findsOneWidget);
+  });
 
-      expect(find.text('0'), findsOneWidget);
-      expect(find.text('Hello, Automation!'), findsOneWidget);
-    },
-  );
+  patrolTest('Task interaction flow test', ($) async {
+    await $.pumpWidgetAndSettle(
+      SymmetryApp(themeController: ThemeController()),
+    );
 
-  patrolTest(
-    'Multiple interactions in sequence',
-    ($) async {
-      await $.pumpWidgetAndSettle(const MyApp());
+    // Add a task
+    await $.enterText(find.byKey(const Key('textInput')), 'Automation test');
+    await $.tap(find.byKey(const Key('addButton')));
 
-      await $.tap(find.byKey(const Key('incrementButton')));
-      await $.tap(find.byKey(const Key('incrementButton')));
+    // Verify task appears
+    expect(find.text('Automation test'), findsOneWidget);
 
-      expect(find.text('2'), findsOneWidget);
+    // Complete the task
+    await $.tap(find.text('Automation test'));
 
-      await $.enterText(
-        find.byKey(const Key('textInput')),
-        'Multiple interactions',
-      );
-
-      await $.tap(find.byKey(const Key('updateButton')));
-
-      expect(find.text('Multiple interactions'), findsOneWidget);
-    },
-  );
+    // Verify clear button appears
+    expect(find.byKey(const Key('clearButton')), findsOneWidget);
+  });
 }
